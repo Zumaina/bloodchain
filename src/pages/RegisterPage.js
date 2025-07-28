@@ -6,7 +6,10 @@ import {
   Button,
   Box,
   Paper,
+  Snackbar,
+  Alert,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -15,6 +18,55 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // ✅ Check for empty fields
+    if (
+      !name.trim() ||
+      !email.trim() ||
+      !phone.trim() ||
+      !password.trim() ||
+      !confirmPassword.trim()
+    ) {
+      setSnackbarMessage("❌ Please fill in all fields");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    // ✅ Check if passwords match
+    if (password !== confirmPassword) {
+      setSnackbarMessage("❌ Passwords do not match");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
+    // ✅ Success
+    setSnackbarMessage("✅ Registration successful!");
+    setSnackbarSeverity("success");
+    setSnackbarOpen(true);
+
+    // ✅ Clear fields
+    setName("");
+    setEmail("");
+    setPhone("");
+    setPassword("");
+    setConfirmPassword("");
+
+    // ✅ Redirect after 2 seconds
+    setTimeout(() => {
+      navigate("/login");
+    }, 2000);
+  };
+
   return (
     <Container maxWidth="sm">
       <Paper elevation={3} sx={{ padding: 4, marginTop: 8 }}>
@@ -22,20 +74,7 @@ const RegisterPage = () => {
           Register
         </Typography>
 
-        <Box
-            component="form"
-            noValidate
-            autoComplete="off"
-            onSubmit={(e) => {
-                e.preventDefault(); // stop page refresh
-                if (password !== confirmPassword) {
-                alert("❌ Passwords do not match");
-                } else {
-                alert(`✅ Registered!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}`);
-                }
-            }}
-        >
-
+        <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField
             fullWidth
             label="Full Name"
@@ -91,16 +130,27 @@ const RegisterPage = () => {
             Register
           </Button>
 
-
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{ marginTop: 2 }}
-          >
+          <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
             Already a member? <a href="/login">Login</a>
           </Typography>
         </Box>
       </Paper>
+
+      {/* ✅ Snackbar for success/error */}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2500}
+        onClose={() => setSnackbarOpen(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          severity={snackbarSeverity}
+          variant="filled"
+          onClose={() => setSnackbarOpen(false)}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
