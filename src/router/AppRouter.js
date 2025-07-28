@@ -1,16 +1,13 @@
 // src/router/AppRouter.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="/" element={<div>Home Page</div>} />
+      <Route path="/login" element={<div>Login Page</div>} />
+      <Route path="/register" element={<div>Register Page</div>} />
     </Routes>
   );
 };
