@@ -1,13 +1,15 @@
-// src/router/AppRouter.js
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import RegisterPage from "../pages/RegisterPage";
+import LoginPage from "../pages/LoginPage";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route path="/" element={<div>Home Page</div>} />
-      <Route path="/login" element={<div>Login Page</div>} />
-      <Route path="/register" element={<div>Register Page</div>} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 };
