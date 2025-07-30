@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import {
   Container,
   Typography,
@@ -48,7 +49,7 @@ const LoginPage = () => {
         Forgot Password
       </Typography>
       <Typography variant="body1" align="center" sx={{ mb: 2 }}>
-        This is forgot password page
+        This is forgot password
       </Typography>
       <Button
         variant="contained"
@@ -110,11 +111,14 @@ const LoginPage = () => {
               </Typography>
 
               <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
-                Don't have an account?{" "}
-                <a href="/register" style={{ textDecoration: "underline" }}>
-                  Register
-                </a>
-              </Typography>
+              Don't have an account?{" "}
+              <Link
+                to="/register"
+                style={{ textDecoration: 'none', color: '#d32f2f', fontWeight: 'bold' }}
+              >
+                Register
+              </Link>
+            </Typography>
             </Box>
           </>
         ) : (

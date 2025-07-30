@@ -8,6 +8,7 @@ import {
   Button,
 } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom"; // ⬅️ Add this at the top
 
 
 const DonorRegisterPage = () => {
@@ -16,10 +17,13 @@ const DonorRegisterPage = () => {
   const [gender, setGender] = useState("");
   const [bloodGroup, setBloodGroup] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // No backend yet – just logging to console for now
     console.log({ name, age, gender, bloodGroup });
+    // ✅ Navigate to Home after submit
+    navigate("/");
   };
 
   return (

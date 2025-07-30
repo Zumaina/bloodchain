@@ -9,7 +9,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -131,8 +131,9 @@ const RegisterPage = () => {
           </Button>
 
           <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
-            Already a member? <a href="/login">Login</a>
+            Already a member? <Link to="/login" style={{ textDecoration: 'none', color: '#d32f2f', fontWeight: 'bold' }}>Login</Link>
           </Typography>
+
         </Box>
       </Paper>
 
