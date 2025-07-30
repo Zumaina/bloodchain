@@ -27,7 +27,6 @@ const RegisterPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Check for empty fields
     if (
       !name.trim() ||
       !email.trim() ||
@@ -41,7 +40,6 @@ const RegisterPage = () => {
       return;
     }
 
-    // ✅ Check if passwords match
     if (password !== confirmPassword) {
       setSnackbarMessage("❌ Passwords do not match");
       setSnackbarSeverity("error");
@@ -49,19 +47,16 @@ const RegisterPage = () => {
       return;
     }
 
-    // ✅ Success
     setSnackbarMessage("✅ Registration successful!");
     setSnackbarSeverity("success");
     setSnackbarOpen(true);
 
-    // ✅ Clear fields
     setName("");
     setEmail("");
     setPhone("");
     setPassword("");
     setConfirmPassword("");
 
-    // ✅ Redirect after 2 seconds
     setTimeout(() => {
       navigate("/login");
     }, 2000);
@@ -99,8 +94,12 @@ const RegisterPage = () => {
             margin="normal"
             required
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => {
+              const onlyDigits = e.target.value.replace(/\D/g, ""); 
+              setPhone(onlyDigits);
+            }}
           />
+
           <TextField
             fullWidth
             label="Password"
@@ -137,7 +136,6 @@ const RegisterPage = () => {
         </Box>
       </Paper>
 
-      {/* ✅ Snackbar for success/error */}
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={2500}

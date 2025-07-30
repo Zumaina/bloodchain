@@ -7,7 +7,6 @@ const HomePage = () => {
   return (
     <Box sx={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
       
-      {/* Main content */}
       <Box
         sx={{
           display: "flex",
@@ -18,7 +17,6 @@ const HomePage = () => {
           flexGrow: 1,
         }}
       >
-        {/* Left: Image */}
         <Box
           component="img"
           src={donationImage}

@@ -42,7 +42,6 @@ const LoginPage = () => {
     }, 2000);
   };
 
-  // ✅ Forgot Password Page as inline component
   const ForgotPasswordPage = () => (
     <div>
       <Typography variant="h5" align="center" gutterBottom>
