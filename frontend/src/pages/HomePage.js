@@ -38,16 +38,18 @@ const HomePage = () => {
   size="large"
   sx={{ marginRight: 2 }}
 >
-  Donate Blood
-</Button>
-            <Button
-            variant="outlined"
-            color="error"
-            size="large"
-            href="/request"
-            >
-            Request Blood
+  Become a Donor
             </Button>
+            <Button
+              component={Link}
+              to="/request"
+              variant="outlined"
+              color="error"
+              size="large"
+            >
+  Request Blood
+</Button>
+
         </Box>
         </Box>
         </Box>
