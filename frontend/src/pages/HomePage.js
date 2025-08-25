@@ -113,7 +113,7 @@ const HomePage = () => {
               }}
             >
               <Typography variant="body1">
-                At BloodConnect, we’re dedicated to bridging the gap between blood
+                At Blood Chain, we’re dedicated to bridging the gap between blood
                 donors and those in need through a user-friendly platform. Our
                 mission is to ensure that no life is lost due to blood shortage by
                 creating a responsive community of donors ready to help at a
