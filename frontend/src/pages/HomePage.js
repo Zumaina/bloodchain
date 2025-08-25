@@ -173,20 +173,15 @@ const HomePage = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: {
-              xs: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(4, 1fr)",
-            },
+            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
             gap: 3,
             mt: 3,
             px: { xs: 2, md: 6 },
           }}
         >
-          {/* Cards */}
-          <Box
-            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
-          >
+          {/* Cards with Icons */}
+          <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
+            <Typography sx={{ fontSize: 40, mb: 1 }}>🩸</Typography>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Connect Donors
             </Typography>
@@ -195,9 +190,8 @@ const HomePage = () => {
             </Typography>
           </Box>
 
-          <Box
-            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
-          >
+          <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
+            <Typography sx={{ fontSize: 40, mb: 1 }}>💬</Typography>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Direct Communication
             </Typography>
@@ -206,9 +200,8 @@ const HomePage = () => {
             </Typography>
           </Box>
 
-          <Box
-            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
-          >
+          <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
+            <Typography sx={{ fontSize: 40, mb: 1 }}>📢</Typography>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Request Notifications
             </Typography>
@@ -217,9 +210,8 @@ const HomePage = () => {
             </Typography>
           </Box>
 
-          <Box
-            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
-          >
+          <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
+            <Typography sx={{ fontSize: 40, mb: 1 }}>🏥</Typography>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Bank Network
             </Typography>
