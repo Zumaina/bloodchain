@@ -1,7 +1,7 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import logo1 from "../assets/logo1.png"; 
+import logo1 from "../assets/logo1.png";
 
 const Navbar = () => {
   return (
@@ -9,7 +9,7 @@ const Navbar = () => {
       <Toolbar>
         <Box
           component="img"
-          src={logo1}  
+          src={logo1}
           alt="App Logo"
           sx={{ height: 40, marginRight: 1 }}
         />
@@ -31,7 +31,7 @@ const Navbar = () => {
           <Button color="inherit" component={Link} to="/">
             Home
           </Button>
-          <Button color="inherit">
+          <Button color="inherit" component={Link} to="/donate">
             Donate
           </Button>
           <Button color="inherit" component={Link} to="/request">

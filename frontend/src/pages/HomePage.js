@@ -32,14 +32,15 @@ const HomePage = () => {
         <Box sx={{ marginTop: 3 }}>
             <Button
   component={Link}
-  to="/donate"
+  to="/donor-register"
   variant="contained"
   color="error"
   size="large"
   sx={{ marginRight: 2 }}
 >
   Become a Donor
-            </Button>
+</Button>
+
             <Button
               component={Link}
               to="/request"

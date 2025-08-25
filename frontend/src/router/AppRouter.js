@@ -12,7 +12,7 @@ const AppRouter = () => {
       <Route path="/" element={<HomePage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/donate" element={<DonorRegisterPage />} />
+      <Route path="/donor-register" element={<DonorRegisterPage />} />
     </Routes>
   );
 };
