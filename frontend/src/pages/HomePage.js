@@ -74,7 +74,17 @@ const HomePage = () => {
           About Us
         </Typography>
 
-        {/* Mission Section */}
+        {/* Our Mission Title (Above the two text boxes) */}
+        <Typography
+          variant="h6"
+          fontWeight="bold"
+          gutterBottom
+          sx={{ mt: 4, mb: 2 }}
+        >
+          Our Mission
+        </Typography>
+
+        {/* Two Text Boxes */}
         <Box
           sx={{
             display: "flex",
@@ -82,10 +92,10 @@ const HomePage = () => {
             flexWrap: "wrap",
             gap: 3,
             mt: 3,
-            alignItems: "stretch", // ensures equal height for both boxes
+            alignItems: "stretch",
           }}
         >
-          {/* Our Mission Box */}
+          {/* Box 1 */}
           <Box
             sx={{
               width: { xs: "90%", md: "40%" },
@@ -97,9 +107,6 @@ const HomePage = () => {
               flexDirection: "column",
             }}
           >
-            <Typography variant="h6" fontWeight="bold" gutterBottom>
-              Our Mission
-            </Typography>
             <Typography variant="body1">
               At BloodConnect, we’re dedicated to bridging the gap between blood
               donors and those in need through a user-friendly platform. Our
@@ -109,7 +116,7 @@ const HomePage = () => {
             </Typography>
           </Box>
 
-          {/* About Us Box */}
+          {/* Box 2 */}
           <Box
             sx={{
               width: { xs: "90%", md: "40%" },
