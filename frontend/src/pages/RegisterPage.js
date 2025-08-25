@@ -69,7 +69,12 @@ const RegisterPage = () => {
           Register
         </Typography>
 
-        <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
           <TextField
             fullWidth
             label="Full Name"
@@ -95,7 +100,7 @@ const RegisterPage = () => {
             required
             value={phone}
             onChange={(e) => {
-              const onlyDigits = e.target.value.replace(/\D/g, ""); 
+              const onlyDigits = e.target.value.replace(/\D/g, "");
               setPhone(onlyDigits);
             }}
           />
@@ -130,9 +135,18 @@ const RegisterPage = () => {
           </Button>
 
           <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
-            Already a member? <Link to="/login" style={{ textDecoration: 'none', color: '#d32f2f', fontWeight: 'bold' }}>Login</Link>
+            Already a member?{" "}
+            <Link
+              to="/login"
+              style={{
+                textDecoration: "none",
+                color: "#d32f2f",
+                fontWeight: "bold",
+              }}
+            >
+              Login
+            </Link>
           </Typography>
-
         </Box>
       </Paper>
 
