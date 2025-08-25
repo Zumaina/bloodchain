@@ -74,65 +74,89 @@ const HomePage = () => {
           About Us
         </Typography>
 
-        {/* Our Mission Heading - aligned left with first box */}
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            sx={{ textAlign: "left", width: { xs: "100%", md: "40%" } }}
-          >
-            Our Mission
-          </Typography>
-        </Box>
-
-        {/* Two Text Boxes */}
+        {/* About Us Text Row */}
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            flexWrap: "wrap",
+            flexWrap: { xs: "wrap", md: "nowrap" },
             gap: 3,
-            mt: 1,
-            alignItems: "stretch",
+            mt: 3,
             px: { xs: 2, md: 6 },
+            alignItems: "flex-start", // top alignment
           }}
         >
-          {/* Box 1 */}
+          {/* First Box Column */}
           <Box
             sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
               width: { xs: "100%", md: "40%" },
-              bgcolor: "#ffeaea",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "left",
             }}
           >
-            <Typography variant="body1">
-              At BloodConnect, we’re dedicated to bridging the gap between blood
-              donors and those in need through a user-friendly platform. Our
-              mission is to ensure that no life is lost due to blood shortage by
-              creating a responsive community of donors ready to help at a
-              moment’s notice.
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              sx={{ textAlign: "left", mb: 1 }}
+            >
+              Our Mission
             </Typography>
+
+            <Box
+              sx={{
+                bgcolor: "#ffeaea",
+                p: 3,
+                borderRadius: 2,
+                textAlign: "left",
+                height: "100%",
+              }}
+            >
+              <Typography variant="body1">
+                At BloodConnect, we’re dedicated to bridging the gap between blood
+                donors and those in need through a user-friendly platform. Our
+                mission is to ensure that no life is lost due to blood shortage by
+                creating a responsive community of donors ready to help at a
+                moment’s notice.
+              </Typography>
+            </Box>
           </Box>
 
-          {/* Box 2 */}
+          {/* Second Box Column */}
           <Box
             sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
               width: { xs: "100%", md: "40%" },
-              bgcolor: "#ffeaea",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "left",
             }}
           >
-            <Typography variant="body1">
-              Founded in 2025, we’ve grown from a small community initiative to
-              a nationwide network of compassionate individuals committed to
-              saving lives through blood donation. Together, we’re making a
-              meaningful difference in emergency medical care across the
-              country.
+            {/* Invisible heading to align with first box */}
+            <Typography
+              variant="h6"
+              fontWeight="bold"
+              sx={{ textAlign: "left", mb: 1, visibility: "hidden" }}
+            >
+              Placeholder
             </Typography>
+
+            <Box
+              sx={{
+                bgcolor: "#ffeaea",
+                p: 3,
+                borderRadius: 2,
+                textAlign: "left",
+                height: "100%",
+              }}
+            >
+              <Typography variant="body1">
+                Founded in 2025, we’ve grown from a small community initiative to
+                a nationwide network of compassionate individuals committed to
+                saving lives through blood donation. Together, we’re making a
+                meaningful difference in emergency medical care across the
+                country.
+              </Typography>
+            </Box>
           </Box>
         </Box>
 
@@ -149,81 +173,58 @@ const HomePage = () => {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr", md: "repeat(4, 1fr)" },
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr 1fr",
+              md: "repeat(4, 1fr)",
+            },
             gap: 3,
             mt: 3,
             px: { xs: 2, md: 6 },
           }}
         >
-          {/* Card 1 */}
+          {/* Cards */}
           <Box
-            sx={{
-              bgcolor: "#fff0f0",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "center",
-            }}
+            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
           >
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Connect Donors
             </Typography>
             <Typography variant="body2">
-              We help you find blood donors in your area based on blood type and
-              urgency with our advanced matching system.
+              We help you find blood donors in your area based on blood type and urgency with our advanced matching system.
             </Typography>
           </Box>
 
-          {/* Card 2 */}
           <Box
-            sx={{
-              bgcolor: "#fff0f0",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "center",
-            }}
+            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
           >
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Direct Communication
             </Typography>
             <Typography variant="body2">
-              Our platform enables secure direct messaging between donors and
-              recipients, maintaining privacy while facilitating coordination.
+              Our platform enables secure direct messaging between donors and recipients, maintaining privacy while facilitating coordination.
             </Typography>
           </Box>
 
-          {/* Card 3 */}
           <Box
-            sx={{
-              bgcolor: "#fff0f0",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "center",
-            }}
+            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
           >
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Request Notifications
             </Typography>
             <Typography variant="body2">
-              Receive real-time alerts for urgent blood requests in your area,
-              allowing you to respond quickly to critical needs.
+              Receive real-time alerts for urgent blood requests in your area, allowing you to respond quickly to critical needs.
             </Typography>
           </Box>
 
-          {/* Card 4 */}
           <Box
-            sx={{
-              bgcolor: "#fff0f0",
-              p: 3,
-              borderRadius: 2,
-              textAlign: "center",
-            }}
+            sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}
           >
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Bank Network
             </Typography>
             <Typography variant="body2">
-              We partner with blood banks nationwide to ensure availability
-              during emergencies and maintain a reliable supply chain.
+              We partner with blood banks nationwide to ensure availability during emergencies and maintain a reliable supply chain.
             </Typography>
           </Box>
         </Box>
