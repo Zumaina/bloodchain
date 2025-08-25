@@ -13,14 +13,16 @@ const HomePage = () => {
         justifyContent: "space-between",
       }}
     >
+      {/* Hero Section */}
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
           justifyContent: "space-around",
           padding: 4,
           flexGrow: 1,
+          gap: 4,
         }}
       >
         <Box
@@ -80,8 +82,10 @@ const HomePage = () => {
             flexWrap: "wrap",
             gap: 3,
             mt: 3,
+            alignItems: "stretch", // ensures equal height for both boxes
           }}
         >
+          {/* Our Mission Box */}
           <Box
             sx={{
               width: { xs: "90%", md: "40%" },
@@ -89,6 +93,8 @@ const HomePage = () => {
               p: 3,
               borderRadius: 2,
               textAlign: "left",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -103,6 +109,7 @@ const HomePage = () => {
             </Typography>
           </Box>
 
+          {/* About Us Box */}
           <Box
             sx={{
               width: { xs: "90%", md: "40%" },
@@ -110,6 +117,8 @@ const HomePage = () => {
               p: 3,
               borderRadius: 2,
               textAlign: "left",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             <Typography variant="body1">
@@ -215,6 +224,7 @@ const HomePage = () => {
         </Box>
       </Box>
 
+      {/* Footer */}
       <Box sx={{ textAlign: "center", padding: 2, backgroundColor: "#f5f5f5" }}>
         <Typography variant="body2">
           Follow us on{" "}
