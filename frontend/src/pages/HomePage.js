@@ -74,15 +74,16 @@ const HomePage = () => {
           About Us
         </Typography>
 
-        {/* Our Mission Title (Above the two text boxes) */}
-        <Typography
-          variant="h6"
-          fontWeight="bold"
-          gutterBottom
-          sx={{ mt: 4, mb: 2 }}
-        >
-          Our Mission
-        </Typography>
+        {/* Our Mission Heading - aligned left with first box */}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            sx={{ textAlign: "left", width: { xs: "100%", md: "40%" } }}
+          >
+            Our Mission
+          </Typography>
+        </Box>
 
         {/* Two Text Boxes */}
         <Box
@@ -91,20 +92,19 @@ const HomePage = () => {
             justifyContent: "center",
             flexWrap: "wrap",
             gap: 3,
-            mt: 3,
+            mt: 1,
             alignItems: "stretch",
+            px: { xs: 2, md: 6 },
           }}
         >
           {/* Box 1 */}
           <Box
             sx={{
-              width: { xs: "90%", md: "40%" },
+              width: { xs: "100%", md: "40%" },
               bgcolor: "#ffeaea",
               p: 3,
               borderRadius: 2,
               textAlign: "left",
-              display: "flex",
-              flexDirection: "column",
             }}
           >
             <Typography variant="body1">
@@ -119,13 +119,11 @@ const HomePage = () => {
           {/* Box 2 */}
           <Box
             sx={{
-              width: { xs: "90%", md: "40%" },
+              width: { xs: "100%", md: "40%" },
               bgcolor: "#ffeaea",
               p: 3,
               borderRadius: 2,
               textAlign: "left",
-              display: "flex",
-              flexDirection: "column",
             }}
           >
             <Typography variant="body1">
