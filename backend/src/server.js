@@ -1,8 +1,10 @@
-// backend/src/server.js
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+
+import bloodBankRoutes from "./routes/bloodBankRoutes.js";
+import errorHandler from "./middleware/errorHandler.js";
 
 dotenv.config(); // loads backend/.env
 
@@ -22,20 +24,11 @@ app.use(
 // Connect to MongoDB
 await connectDB();
 
-// --- Checkpoint 1 demo routes (simple GET + POST) ---
+// --- Real Routes ---
+app.use("/api/blood-banks", bloodBankRoutes);
 
-// GET: health check
-app.get("/api/health", (req, res) => {
-  res.status(200).json({ status: "ok", message: "Backend is running" });
-});
-
-// POST: echo back whatever the client sends
-app.post("/api/echo", (req, res) => {
-  res.status(201).json({
-    received: req.body || null,
-    note: "This is a simple POST echo endpoint.",
-  });
-});
+// Global error handler (must be last)
+app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 5000;
