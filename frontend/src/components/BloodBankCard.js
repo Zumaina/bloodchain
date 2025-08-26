@@ -13,7 +13,7 @@ import PhoneIcon from "@mui/icons-material/Phone";
 const BloodBankCard = ({ name, address, phone }) => {
   // Google Maps link generated from address
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    address
+    name
   )}`;
 
   return (
