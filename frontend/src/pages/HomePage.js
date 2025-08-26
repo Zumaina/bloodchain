@@ -2,6 +2,10 @@ import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import donationImage from "../assets/donation.jpg";
 import { Link } from "react-router-dom";
+import BloodtypeIcon from "@mui/icons-material/Bloodtype";
+import ChatIcon from "@mui/icons-material/Chat";
+import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
 const HomePage = () => {
   return (
@@ -38,14 +42,22 @@ const HomePage = () => {
             <span style={{ color: "green" }}>Lives</span>
           </Typography>
 
-          <Box sx={{ marginTop: 3 }}>
+          <Box
+  sx={{
+    marginTop: 3,
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 2, 
+  }}
+>
             <Button
               component={Link}
               to="/donor-register"
               variant="contained"
               color="error"
               size="large"
-              sx={{ marginRight: 2 }}
             >
               Become a Donor
             </Button>
@@ -60,6 +72,7 @@ const HomePage = () => {
               Request Blood
             </Button>
           </Box>
+
         </Box>
       </Box>
 
@@ -181,7 +194,7 @@ const HomePage = () => {
         >
           {/* Cards with Icons */}
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
-            <Typography sx={{ fontSize: 40, mb: 1 }}>🩸</Typography>
+            <BloodtypeIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Connect Donors
             </Typography>
@@ -191,7 +204,7 @@ const HomePage = () => {
           </Box>
 
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
-            <Typography sx={{ fontSize: 40, mb: 1 }}>💬</Typography>
+            <ChatIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Direct Communication
             </Typography>
@@ -201,7 +214,7 @@ const HomePage = () => {
           </Box>
 
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
-            <Typography sx={{ fontSize: 40, mb: 1 }}>📢</Typography>
+            <NotificationsActiveIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Request Notifications
             </Typography>
@@ -211,7 +224,7 @@ const HomePage = () => {
           </Box>
 
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
-            <Typography sx={{ fontSize: 40, mb: 1 }}>🏥</Typography>
+            <LocalHospitalIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Blood Bank Network
             </Typography>
@@ -219,6 +232,7 @@ const HomePage = () => {
               We partner with blood banks nationwide to ensure availability during emergencies and maintain a reliable supply chain.
             </Typography>
           </Box>
+
         </Box>
       </Box>
 
