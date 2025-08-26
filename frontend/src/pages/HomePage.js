@@ -86,36 +86,57 @@ const HomePage = () => {
       </Box>
 
       {/* Info Cards Section */}
-<Box sx={{ mt: 6, mb: 6 }}>
-  <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
-    Learn More
-  </Typography>
+
+      <Box sx={{ mt: 6, mb: 6 }}>
+        <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
+          Learn More
+        </Typography>
 
         <Grid container spacing={3} justifyContent="center">
-          {infoCards.map((card) => (
-            <Grid item xs={12} sm={6} md={4} key={card.slug}>
-              <Card sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
-                <CardContent>
-                  <Typography variant="h6" fontWeight="bold">{card.title}</Typography>
-                </CardContent>
-                <CardActions>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    component={Link}
-                    to={`/info/${card.slug}`}
-                  >
-                    Learn More
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+  {infoCards.map((card) => (
+    <Grid 
+      item 
+      xs={12} 
+      sm={6} 
+      md={4} 
+      sx={{ display: "flex", justifyContent: "stretch" }} 
+      key={card.slug}
+    >
+      <Card
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          padding: 2,
+          backgroundColor: "#EDE0D4",
+        }}
+      >
+        <CardContent sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            sx={{ whiteSpace: "pre-line", wordBreak: "break-word" }}
+          >
+            {card.title}
+          </Typography>
+        </CardContent>
+        <CardActions sx={{ marginTop: "auto", justifyContent: "center" }}>
+          <Button
+            size="small"
+            variant="contained"
+            component={Link}
+            to={`/info/${card.slug}`}
+          >
+            Learn More
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
 
-</Box>
 
-
+      </Box>
 
       {/* About Us Section */}
       <Box sx={{ textAlign: "center", mt: 6, mb: 6 }}>
