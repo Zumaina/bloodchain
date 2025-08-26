@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import infoRoutes from "./routes/infoRoutes.js";
 
 import bloodBankRoutes from "./routes/bloodBankRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
@@ -12,6 +13,7 @@ const app = express();
 
 // Allow JSON request bodies
 app.use(express.json());
+
 
 // CORS (adjust origin if your frontend runs elsewhere)
 app.use(
@@ -25,6 +27,7 @@ app.use(
 await connectDB();
 
 // --- Real Routes ---
+app.use("/api/info", infoRoutes);
 app.use("/api/blood-banks", bloodBankRoutes);
 
 // Global error handler (must be last)

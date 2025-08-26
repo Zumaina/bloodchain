@@ -1,11 +1,20 @@
 import React from "react";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Grid, Card, CardContent, CardActions } from "@mui/material";
+
 import donationImage from "../assets/donation.jpg";
 import { Link } from "react-router-dom";
 import BloodtypeIcon from "@mui/icons-material/Bloodtype";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+
+const infoCards = [
+  { title: "Blood and Blood Content", slug: "blood-content" },
+  { title: "When You Can't Donate Blood", slug: "cant-donate" },
+  { title: "Post Blood Donation", slug: "post-donation" },
+  { title: "Blood Donation Reduces Risk", slug: "reduces-risk" },
+  { title: "Win Over Your Fear", slug: "fear" },
+];
 
 const HomePage = () => {
   return (
@@ -75,6 +84,38 @@ const HomePage = () => {
 
         </Box>
       </Box>
+
+      {/* Info Cards Section */}
+<Box sx={{ mt: 6, mb: 6 }}>
+  <Typography variant="h4" fontWeight="bold" align="center" gutterBottom>
+    Learn More
+  </Typography>
+
+        <Grid container spacing={3} justifyContent="center">
+          {infoCards.map((card) => (
+            <Grid item xs={12} sm={6} md={4} key={card.slug}>
+              <Card sx={{ height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+                <CardContent>
+                  <Typography variant="h6" fontWeight="bold">{card.title}</Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    component={Link}
+                    to={`/info/${card.slug}`}
+                  >
+                    Learn More
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+</Box>
+
+
 
       {/* About Us Section */}
       <Box sx={{ textAlign: "center", mt: 6, mb: 6 }}>
