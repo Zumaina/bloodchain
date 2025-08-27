@@ -4,12 +4,10 @@ import { getBloodBanks, addBloodBank } from "../controllers/bloodBankController.
 
 const router = express.Router();
 
-// @route   GET /api/blood-banks
-// @desc    Get all blood banks
+
 router.get("/", getBloodBanks);
 
-// @route   POST /api/blood-banks
-// @desc    Add a new blood bank
+
 router.post(
   "/",
   [

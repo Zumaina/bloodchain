@@ -67,7 +67,7 @@ const DonatePage = () => {
         </Box>
       )}
 
-      {/* Blood Requests Tab (placeholder for later) */}
+      {/* Blood Requests Tab */}
       {tab === 1 && (
         <Box sx={{ mt: 3, textAlign: "center" }}>
           <Typography variant="body1" color="text.secondary">

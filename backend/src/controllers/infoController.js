@@ -1,6 +1,6 @@
 import Info from "../models/Info.js";
 
-// GET all info cards
+
 export const getInfos = async (req, res, next) => {
   try {
     const infos = await Info.find().sort({ title: 1 }); // optional: alphabetical
@@ -10,7 +10,7 @@ export const getInfos = async (req, res, next) => {
   }
 };
 
-// GET info by slug
+
 export const getInfoBySlug = async (req, res, next) => {
   try {
     const info = await Info.findOne({ slug: req.params.slug });
@@ -21,7 +21,7 @@ export const getInfoBySlug = async (req, res, next) => {
   }
 };
 
-// Optional: POST info (for admin use)
+
 export const createInfo = async (req, res, next) => {
   try {
     const { title, slug, content } = req.body;

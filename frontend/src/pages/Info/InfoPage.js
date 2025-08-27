@@ -4,7 +4,7 @@ import axios from "axios";
 import { Box, Typography } from "@mui/material";
 
 const InfoPage = () => {
-  const { slug } = useParams();  // dynamic slug from URL
+  const { slug } = useParams(); 
   const [info, setInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

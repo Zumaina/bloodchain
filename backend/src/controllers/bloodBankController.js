@@ -1,23 +1,19 @@
 import BloodBank from "../models/BloodBank.js";
 import { validationResult } from "express-validator";
 
-// @desc    Get all blood banks (alphabetical order)
-// @route   GET /api/blood-banks
-// @access  Public
+
 export const getBloodBanks = async (req, res, next) => {
   try {
-    const banks = await BloodBank.find().sort({ name: 1 }); // A-Z
+    const banks = await BloodBank.find().sort({ name: 1 }); 
     res.status(200).json(banks);
   } catch (error) {
-    next(error); // handled by errorHandler.js
+    next(error); 
   }
 };
 
-// @desc    Add a new blood bank
-// @route   POST /api/blood-banks
-// @access  Public (later maybe admin only)
+
 export const addBloodBank = async (req, res, next) => {
-  // validate request
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -32,6 +28,6 @@ export const addBloodBank = async (req, res, next) => {
       data: newBank,
     });
   } catch (error) {
-    next(error); // handled by errorHandler.js
+    next(error); 
   }
 };
