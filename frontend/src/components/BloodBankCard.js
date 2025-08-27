@@ -17,9 +17,18 @@ const BloodBankCard = ({ name, address, phone }) => {
   )}`;
 
   return (
-    <Card sx={{ minHeight: 180, maxWidth: 400, m: 2 }}>
+    <Card
+      sx={{
+        width: 350,
+        height: 220,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        m: 2,
+      }}
+    >
       <CardContent>
-        <Typography variant="h6" fontWeight="bold" gutterBottom>
+        <Typography variant="h6" fontWeight="bold" gutterBottom align="center">
           {name}
         </Typography>
 
@@ -38,7 +47,10 @@ const BloodBankCard = ({ name, address, phone }) => {
         <Button
           size="small"
           variant="contained"
-          sx={{ backgroundColor: "green", "&:hover": { backgroundColor: "darkgreen" } }}
+          sx={{
+            backgroundColor: "green",
+            "&:hover": { backgroundColor: "darkgreen" },
+          }}
           href={`tel:${phone}`}
         >
           Call
@@ -46,7 +58,10 @@ const BloodBankCard = ({ name, address, phone }) => {
         <Button
           size="small"
           variant="contained"
-          sx={{ backgroundColor: "blue", "&:hover": { backgroundColor: "darkblue" } }}
+          sx={{
+            backgroundColor: "blue",
+            "&:hover": { backgroundColor: "darkblue" },
+          }}
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
