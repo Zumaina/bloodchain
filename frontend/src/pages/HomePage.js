@@ -9,11 +9,11 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 
 const infoCards = [
-  { title: "Blood and Blood Content", slug: "blood-content" },
-  { title: "When You Can't Donate Blood", slug: "cant-donate" },
-  { title: "Post Blood Donation", slug: "post-donation" },
-  { title: "Blood Donation Reduces Risk", slug: "reduces-risk" },
-  { title: "Win Over Your Fear", slug: "fear" },
+  { title: "Blood and Blood Content", slug: "blood-and-blood-content" },
+  { title: "When You Can't Donate Blood", slug: "when-you-cant-donate" },
+  { title: "Post Blood Donation", slug: "post-blood-donation" },
+  { title: "Blood Donation Reduces Risk", slug: "blood-donation-reduces-risk" },
+  { title: "Win Over Your Fear", slug: "win-over-your-fear" },
 ];
 
 const HomePage = () => {
