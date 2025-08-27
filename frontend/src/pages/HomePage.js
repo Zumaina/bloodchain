@@ -149,7 +149,7 @@ const HomePage = () => {
           About Us
         </Typography>
 
-        {/* About Us Text Row */}
+      
         <Box
           sx={{
             display: "flex",
@@ -158,10 +158,10 @@ const HomePage = () => {
             gap: 3,
             mt: 3,
             px: { xs: 2, md: 6 },
-            alignItems: "flex-start", // top alignment
+            alignItems: "flex-start", 
           }}
         >
-          {/* First Box Column */}
+          
           <Box
             sx={{
               display: "flex",
@@ -197,7 +197,7 @@ const HomePage = () => {
             </Box>
           </Box>
 
-          {/* Second Box Column */}
+          
           <Box
             sx={{
               display: "flex",
@@ -206,7 +206,7 @@ const HomePage = () => {
               width: { xs: "100%", md: "40%" },
             }}
           >
-            {/* Invisible heading to align with first box */}
+      
             <Typography
               variant="h6"
               fontWeight="bold"
@@ -254,7 +254,7 @@ const HomePage = () => {
             px: { xs: 2, md: 6 },
           }}
         >
-          {/* Cards with Icons */}
+         
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
             <BloodtypeIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
