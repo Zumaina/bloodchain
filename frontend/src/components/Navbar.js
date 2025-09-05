@@ -13,14 +13,70 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import logo1 from "../assets/logo1.png";
 
+// Create a custom button with highly visible click feedback for navbar
+const NavbarButton = ({ 
+  children, 
+  to, 
+  color = "inherit",
+  onClick,
+  ...props 
+}) => {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleClick = (e) => {
+    setIsClicked(true);
+    // Reset after animation completes
+    setTimeout(() => setIsClicked(false), 100);
+    
+    if (onClick) onClick(e);
+  };
+
+  return (
+    <Button
+      component={Link}
+      to={to}
+      color={color}
+      onClick={handleClick}
+      sx={{
+        transition: "all 0.15s ease",
+        transform: isClicked ? "scale(0.85)" : "scale(1)",
+        backgroundColor: isClicked ? "rgba(255, 255, 255, 0.3)" : "transparent",
+        borderRadius: "6px",
+        mx: 0.5,
+        fontWeight: "bold",
+        border: isClicked ? "2px solid white" : "2px solid transparent",
+        boxShadow: isClicked ? "0 0 15px rgba(255, 255, 255, 0.7)" : "none",
+        ...props.sx
+      }}
+      {...props}
+    >
+      {children}
+    </Button>
+  );
+};
+
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [activeMenu, setActiveMenu] = useState(null);
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleMenuClose = () => {
     setAnchorEl(null);
+    setActiveMenu(null);
+  };
+
+  const handleMenuItemClick = (item) => {
+    setActiveMenu(item);
+    // Close the menu immediately but keep the animation for a short time
+    handleMenuClose();
+    
+    // Reset the active menu after a short delay for animation to complete
+    setTimeout(() => {
+      setActiveMenu(null);
+    }, 300);
   };
 
   return (
@@ -47,25 +103,25 @@ const Navbar = () => {
         </Typography>
 
         {/* Desktop Menu */}
-        <Box sx={{ display: { xs: "none", md: "block" } }}>
-          <Button color="inherit" component={Link} to="/">
+        <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
+          <NavbarButton to="/">
             Home
-          </Button>
-          <Button color="inherit" component={Link} to="/donate">
+          </NavbarButton>
+          <NavbarButton to="/donate">
             Donate
-          </Button>
-          <Button color="inherit" component={Link} to="/request">
+          </NavbarButton>
+          <NavbarButton to="/request">
             Request
-          </Button>
-          <Button color="inherit" component={Link} to="/donors">
+          </NavbarButton>
+          <NavbarButton to="/donors">
             Donors
-          </Button>
-          <Button color="inherit" component={Link} to="/login">
+          </NavbarButton>
+          <NavbarButton to="/login">
             Login
-          </Button>
-          <Button color="inherit" component={Link} to="/register">
+          </NavbarButton>
+          <NavbarButton to="/register">
             Register
-          </Button>
+          </NavbarButton>
         </Box>
 
         {/* Mobile Menu */}
@@ -75,6 +131,13 @@ const Navbar = () => {
             edge="end"
             color="inherit"
             onClick={handleMenuOpen}
+            sx={{
+              transition: "all 0.2s ease",
+              transform: anchorEl ? "scale(0.9)" : "scale(1)",
+              backgroundColor: anchorEl ? "rgba(255, 255, 255, 0.3)" : "transparent",
+              border: anchorEl ? "2px solid white" : "2px solid transparent",
+              boxShadow: anchorEl ? "0 0 15px rgba(255, 255, 255, 0.7)" : "none",
+            }}
           >
             <MenuIcon />
           </IconButton>
@@ -82,25 +145,38 @@ const Navbar = () => {
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleMenuClose}
+            PaperProps={{
+              sx: {
+                backgroundColor: "#b71c1c",
+                color: "white",
+              }
+            }}
           >
-            <MenuItem component={Link} to="/" onClick={handleMenuClose}>
-              Home
-            </MenuItem>
-            <MenuItem component={Link} to="/donate" onClick={handleMenuClose}>
-              Donate
-            </MenuItem>
-            <MenuItem component={Link} to="/request" onClick={handleMenuClose}>
-              Request
-            </MenuItem>
-            <MenuItem component={Link} to="/donors" onClick={handleMenuClose}>
-              Donors
-            </MenuItem>
-            <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
-              Login
-            </MenuItem>
-            <MenuItem component={Link} to="/register" onClick={handleMenuClose}>
-              Register
-            </MenuItem>
+            {["/", "/donate", "/request", "/donors", "/login", "/register"].map((path, index) => {
+              const labels = ["Home", "Donate", "Request", "Donors", "Login", "Register"];
+              return (
+                <MenuItem 
+                  key={index}
+                  component={Link} 
+                  to={path} 
+                  onClick={() => handleMenuItemClick(path)}
+                  sx={{
+                    transition: "all 0.2s ease",
+                    backgroundColor: activeMenu === path ? "rgba(255, 255, 255, 0.3)" : "transparent",
+                    fontWeight: "bold",
+                    transform: activeMenu === path ? "scale(0.95)" : "scale(1)",
+                    border: activeMenu === path ? "2px solid white" : "2px solid transparent",
+                    margin: "4px 8px",
+                    borderRadius: "4px",
+                    "&:hover": {
+                      backgroundColor: "rgba(255, 255, 255, 0.2)",
+                    }
+                  }}
+                >
+                  {labels[index]}
+                </MenuItem>
+              );
+            })}
           </Menu>
         </Box>
       </Toolbar>
