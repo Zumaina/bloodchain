@@ -52,15 +52,15 @@ const HomePage = () => {
           </Typography>
 
           <Box
-  sx={{
-    marginTop: 3,
-    display: "flex",
-    flexDirection: { xs: "column", sm: "row" },
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 2, 
-  }}
->
+            sx={{
+              marginTop: 3,
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 2,
+            }}
+          >
             <Button
               component={Link}
               to="/donor-register"
@@ -93,47 +93,47 @@ const HomePage = () => {
         </Typography>
 
         <Grid container spacing={3} justifyContent="center">
-  {infoCards.map((card) => (
-    <Grid 
-      item 
-      xs={12} 
-      sm={6} 
-      md={4} 
-      sx={{ display: "flex", justifyContent: "stretch" }} 
-      key={card.slug}
-    >
-      <Card
-        sx={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          padding: 2,
-          backgroundColor: "#EDE0D4",
-        }}
-      >
-        <CardContent sx={{ flexGrow: 1 }}>
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            sx={{ whiteSpace: "pre-line", wordBreak: "break-word" }}
-          >
-            {card.title}
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ marginTop: "auto", justifyContent: "center" }}>
-          <Button
-            size="small"
-            variant="contained"
-            component={Link}
-            to={`/info/${card.slug}`}
-          >
-            Learn More
-          </Button>
-        </CardActions>
-      </Card>
-    </Grid>
-  ))}
-</Grid>
+          {infoCards.map((card) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              sx={{ display: "flex", justifyContent: "stretch" }}
+              key={card.slug}
+            >
+              <Card
+                sx={{
+                  flex: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: 2,
+                  backgroundColor: "#EDE0D4",
+                }}
+              >
+                <CardContent sx={{ flexGrow: 1 }}>
+                  <Typography
+                    variant="h6"
+                    fontWeight="bold"
+                    sx={{ whiteSpace: "pre-line", wordBreak: "break-word" }}
+                  >
+                    {card.title}
+                  </Typography>
+                </CardContent>
+                <CardActions sx={{ marginTop: "auto", justifyContent: "center" }}>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    component={Link}
+                    to={`/info/${card.slug}`}
+                  >
+                    Learn More
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
 
 
       </Box>
@@ -149,7 +149,7 @@ const HomePage = () => {
           About Us
         </Typography>
 
-      
+
         <Box
           sx={{
             display: "flex",
@@ -158,10 +158,10 @@ const HomePage = () => {
             gap: 3,
             mt: 3,
             px: { xs: 2, md: 6 },
-            alignItems: "flex-start", 
+            alignItems: "flex-start",
           }}
         >
-          
+
           <Box
             sx={{
               display: "flex",
@@ -197,7 +197,7 @@ const HomePage = () => {
             </Box>
           </Box>
 
-          
+
           <Box
             sx={{
               display: "flex",
@@ -206,7 +206,7 @@ const HomePage = () => {
               width: { xs: "100%", md: "40%" },
             }}
           >
-      
+
             <Typography
               variant="h6"
               fontWeight="bold"
@@ -254,7 +254,7 @@ const HomePage = () => {
             px: { xs: 2, md: 6 },
           }}
         >
-         
+
           <Box sx={{ bgcolor: "#fff0f0", p: 3, borderRadius: 2, textAlign: "center" }}>
             <BloodtypeIcon sx={{ fontSize: 40, mb: 1, color: "red" }} />
             <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -299,26 +299,78 @@ const HomePage = () => {
       </Box>
 
       {/* Footer */}
-      <Box sx={{ textAlign: "center", padding: 2, backgroundColor: "#f5f5f5" }}>
-        <Typography variant="body2">
-          Follow us on{" "}
-          <a
-            href="https://www.facebook.com/profile.php?id=61578966506660&rdid=5wyxPBtQLocg0gKf&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DsKZxRxw7#"
+      {/* Footer */}
+      <Box
+        component="footer"
+        sx={{
+          py: 2,
+          px: { xs: 2, md: 6 },
+          backgroundColor: "#b71c1c",
+          color: "#fff",
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        {/* Left side */}
+        <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+          © {new Date().getFullYear()} Blood Chain
+        </Typography>
+
+        {/* Center */}
+        <Typography
+          variant="body2"
+          sx={{ textAlign: "center", flexGrow: 1 }}
+        >
+          Connecting donors and recipients safely and efficiently
+        </Typography>
+
+        {/* Right side */}
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Box
+            component="a"
+            href="https://www.facebook.com/profile.php?id=61578966506660"
             target="_blank"
             rel="noopener noreferrer"
+            sx={{
+              px: 2,
+              py: 0.5,
+              borderRadius: 2,
+              backgroundColor: "#eececeff",
+              color: "#610c0cff",
+              fontWeight: "bold",
+              textDecoration: "none",
+              fontSize: "0.8rem",
+              "&:hover": { backgroundColor: "#921a11ff" },
+            }}
           >
             Facebook
-          </a>{" "}
-          |{" "}
-          <a
-            href="https://www.instagram.com/blood__chain/profilecard/?igsh=MWRmaG1wY213dnR1bg%3D%3D&fbclid=IwY2xjawL2A39leHRuA2FlbQIxMABicmlkETFaMllPcUs1VU5iSlpKMjRpAR7yUgOdo2dhBPXm2NPxMXedv6pV3dAFpOop_B_9r_NV5VeNeoISo6m6qWOXPw_aem_A0GgxgCRHboI7CTW_MKmoQ"
+          </Box>
+
+          <Box
+            component="a"
+            href="https://www.instagram.com/blood__chain/profilecard/"
             target="_blank"
             rel="noopener noreferrer"
+            sx={{
+              px: 2,
+              py: 0.5,
+              borderRadius: 2,
+              backgroundColor: "#eececeff",
+              color: "#610c0cff",
+              fontWeight: "bold",
+              textDecoration: "none",
+              fontSize: "0.8rem",
+              "&:hover": { backgroundColor: "#921a11ff" },
+            }}
           >
             Instagram
-          </a>
-        </Typography>
+          </Box>
+        </Box>
       </Box>
+
     </Box>
   );
 };
