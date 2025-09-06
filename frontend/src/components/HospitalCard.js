@@ -15,9 +15,9 @@ const HospitalCard = ({ name, location, phone }) => {
   const formattedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-  // Google Maps URL using location
+  // Google Maps URL using name
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-    location
+    name
   )}`;
 
   return (
