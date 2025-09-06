@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react"; // useRef added
 
 import {
   Container,
@@ -9,25 +9,27 @@ import {
   Box,
   Snackbar,
   Alert,
-  InputAdornment,        // NEW
-  IconButton,            // NEW
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-import useLogin from "../hooks/useLogin"; //  NEW
-import Visibility from "@mui/icons-material/Visibility";         //  NEW
-import VisibilityOff from "@mui/icons-material/VisibilityOff";   //  NEW
+import useLogin from "../hooks/useLogin";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); //  NEW
+  const [showPassword, setShowPassword] = useState(false);
 
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const navigate = useNavigate();
-  const { login, loading, error } = useLogin(); //  NEW
+  const { login, loading, error } = useLogin();
+
+  const passwordInputRef = useRef(null); //  NEW: ref to the input element
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -39,7 +41,7 @@ const LoginPage = () => {
       return;
     }
 
-    const user = await login({ email, password }); //  call backend
+    const user = await login({ email, password });
     if (user) {
       setSnackbarMessage(" Login successful!");
       setSnackbarSeverity("success");
@@ -52,8 +54,31 @@ const LoginPage = () => {
     }
   };
 
-  const handleClickShowPassword = () => setShowPassword((prev) => !prev); //  NEW
-  const handleMouseDownPassword = (e) => e.preventDefault();              //  NEW
+  // Keep caret position when toggling visibility
+  const handleClickShowPassword = () => {
+    const input = passwordInputRef.current;
+    let start = null;
+    let end = null;
+    if (input) {
+      start = input.selectionStart;
+      end = input.selectionEnd;
+    }
+    setShowPassword((prev) => !prev);
+    // Restore focus + selection on next tick after DOM updates
+    setTimeout(() => {
+      if (!passwordInputRef.current) return;
+      passwordInputRef.current.focus();
+      try {
+        if (start !== null && end !== null) {
+          passwordInputRef.current.setSelectionRange(start, end);
+        }
+      } catch {
+        /* some browsers may block setSelectionRange on password; safe to ignore */
+      }
+    }, 0);
+  };
+
+  const handleMouseDownPassword = (e) => e.preventDefault();
 
   return (
     <Container maxWidth="sm">
@@ -76,12 +101,13 @@ const LoginPage = () => {
             <TextField
               fullWidth
               label="Password"
-              type={showPassword ? "text" : "password"}   //  NEW
+              type={showPassword ? "text" : "password"}
               margin="normal"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              InputProps={{                                //  NEW
+              inputRef={passwordInputRef} //  NEW: hook up the ref
+              InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
