@@ -11,7 +11,7 @@ const useRegister = () => {
     setLoading(true);
     setError("");
     try {
-      const { data } = await api.post("/api/auth/register", {
+      const { data } = await api.post("/auth/register", {
         name,
         email,
         phone,

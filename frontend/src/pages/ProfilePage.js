@@ -32,7 +32,7 @@ const ProfilePage = () => {
     try {
       setLoading(true);
       setError("");
-      const { data } = await api.get("/api/auth/me");
+      const { data } = await api.get("/auth/me");
       // keep the same token, just refresh the user payload
       setAuth({ user: data.user, token });
     } catch (err) {

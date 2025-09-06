@@ -11,7 +11,7 @@ const useLogin = () => {
     setLoading(true);
     setError("");
     try {
-      const { data } = await api.post("/api/auth/login", { email, password });
+      const { data } = await api.post("/auth/login", { email, password });
       // data => { message, user, token }
       setAuth({ user: data.user, token: data.token });
       return data.user;
