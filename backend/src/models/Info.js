@@ -6,7 +6,6 @@ const infoSchema = new mongoose.Schema(
     slug: { type: String, required: true, unique: true },
     content: { type: String, required: true },
   },
-  { timestamps: true }
 );
 
 export default mongoose.model("Info", infoSchema);
