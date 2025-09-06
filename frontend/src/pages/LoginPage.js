@@ -11,6 +11,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin"; //  NEW
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -22,8 +23,9 @@ const LoginPage = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const navigate = useNavigate();
+  const { login, loading, error } = useLogin(); //  NEW
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
@@ -33,13 +35,18 @@ const LoginPage = () => {
       return;
     }
 
-    setSnackbarMessage("✅ Login successful!");
-    setSnackbarSeverity("success");
-    setSnackbarOpen(true);
-
-    setTimeout(() => {
-      navigate("/");
-    }, 2000);
+    const user = await login({ email, password }); //  call backend
+    if (user) {
+      setSnackbarMessage(" Login successful!");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+      setTimeout(() => navigate("/"), 900);
+    } else {
+      // show hook error (already set inside useLogin)
+      setSnackbarMessage(error || "Login failed");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
   };
 
   const ForgotPasswordPage = () => (
@@ -96,8 +103,9 @@ const LoginPage = () => {
                 variant="contained"
                 color="error"
                 sx={{ marginTop: 3 }}
+                disabled={loading} //  prevent double submit
               >
-                Login
+                {loading ? "Logging in..." : "Login"} {/*  feedback */}
               </Button>
 
               <Typography variant="body2" align="right" sx={{ marginTop: 1 }}>
@@ -110,14 +118,14 @@ const LoginPage = () => {
               </Typography>
 
               <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
-              Don't have an account?{" "}
-              <Link
-                to="/register"
-                style={{ textDecoration: 'none', color: '#d32f2f', fontWeight: 'bold' }}
-              >
-                Register
-              </Link>
-            </Typography>
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  style={{ textDecoration: "none", color: "#d32f2f", fontWeight: "bold" }}
+                >
+                  Register
+                </Link>
+              </Typography>
             </Box>
           </>
         ) : (

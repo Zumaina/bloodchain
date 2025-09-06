@@ -10,6 +10,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
+import useRegister from "../hooks/useRegister"; //  NEW
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -23,8 +24,9 @@ const RegisterPage = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const navigate = useNavigate();
+  const { register, loading, error } = useRegister(); //  NEW
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (
@@ -47,19 +49,21 @@ const RegisterPage = () => {
       return;
     }
 
-    setSnackbarMessage("✅ Registration successful!");
-    setSnackbarSeverity("success");
-    setSnackbarOpen(true);
+    const user = await register({ name, email, phone, password }); //  call backend
+    if (user) {
+      setSnackbarMessage("✅ Registration successful!");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
 
-    setName("");
-    setEmail("");
-    setPhone("");
-    setPassword("");
-    setConfirmPassword("");
-
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+      // You are logged in immediately (token returned), so go Home
+      setTimeout(() => {
+        navigate("/");
+      }, 900);
+    } else {
+      setSnackbarMessage(error || "Registration failed");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+    }
   };
 
   return (
@@ -69,12 +73,7 @@ const RegisterPage = () => {
           Register
         </Typography>
 
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
+        <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField
             fullWidth
             label="Full Name"
@@ -130,8 +129,9 @@ const RegisterPage = () => {
             variant="contained"
             color="error"
             sx={{ marginTop: 3 }}
+            disabled={loading} //  prevent double submit
           >
-            Register
+            {loading ? "Registering..." : "Register"} {/*  feedback */}
           </Button>
 
           <Typography variant="body2" align="center" sx={{ marginTop: 2 }}>
