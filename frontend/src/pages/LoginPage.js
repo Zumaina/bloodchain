@@ -35,7 +35,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     if (!email.trim() || !password.trim()) {
-      setSnackbarMessage("❌ Please enter both email and password");
+      setSnackbarMessage("Please enter both email and password");
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
       return;
