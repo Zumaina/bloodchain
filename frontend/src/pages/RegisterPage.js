@@ -48,14 +48,14 @@ const RegisterPage = () => {
       !password.trim() ||
       !confirmPassword.trim()
     ) {
-      setSnackbarMessage("❌ Please fill in all fields");
+      setSnackbarMessage("Please fill in all fields");
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
       return;
     }
 
     if (password !== confirmPassword) {
-      setSnackbarMessage("❌ Passwords do not match");
+      setSnackbarMessage("Passwords do not match");
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
       return;
@@ -63,7 +63,7 @@ const RegisterPage = () => {
 
     const user = await register({ name, email, phone, password });
     if (user) {
-      setSnackbarMessage("✅ Registration successful!");
+      setSnackbarMessage("Registration successful!");
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
       setTimeout(() => {

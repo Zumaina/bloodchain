@@ -10,10 +10,10 @@ import {
   MenuItem,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // ✅ NEW
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; //  NEW
 import { Link } from "react-router-dom";
 import logo1 from "../assets/logo1.png";
-import useAuthContext from "../hooks/useAuthContext"; // ✅ NEW
+import useAuthContext from "../hooks/useAuthContext"; //  NEW
 
 // Create a custom button with highly visible click feedback for navbar
 const NavbarButton = ({
@@ -58,7 +58,7 @@ const NavbarButton = ({
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [activeMenu, setActiveMenu] = useState(null);
-  const { isAuthenticated, user } = useAuthContext(); // ✅ NEW
+  const { isAuthenticated, user } = useAuthContext(); //  NEW
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -77,7 +77,7 @@ const Navbar = () => {
     }, 300);
   };
 
-  // ✅ Build mobile menu items based on auth state (minimal change)
+  // Build mobile menu items based on auth state (minimal change)
   const mobilePaths = isAuthenticated
     ? ["/", "/donate", "/request", "/donors", "/profile"]
     : ["/", "/donate", "/request", "/donors", "/login", "/register"];
@@ -111,7 +111,7 @@ const Navbar = () => {
           <NavbarButton to="/request">Request</NavbarButton>
           <NavbarButton to="/donors">Donors</NavbarButton>
 
-          {/* ✅ Auth-aware section (minimal, only this part changes) */}
+          {/* Auth-aware section (minimal, only this part changes) */}
           {!isAuthenticated ? (
             <>
               <NavbarButton to="/login">Login</NavbarButton>

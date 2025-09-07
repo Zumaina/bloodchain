@@ -7,7 +7,7 @@ import connectDB from "./config/db.js";
 import infoRoutes from "./routes/infoRoutes.js";
 import bloodBankRoutes from "./routes/bloodBankRoutes.js";
 import hospitalRoutes from "./routes/hospitalRoutes.js";
-import authRoutes from "./routes/authRoutes.js"; // ✅ NEW
+import authRoutes from "./routes/authRoutes.js"; //  NEW
 
 // Middleware
 import errorHandler from "./middleware/errorHandler.js";
