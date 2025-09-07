@@ -1,5 +1,5 @@
 import { createContext, useEffect, useMemo, useState } from "react";
-import { loadAuth, saveAuth, clearAuth } from "../utils/authStorage"; // ✅ NEW
+import { loadAuth, saveAuth, clearAuth } from "../utils/authStorage"; //  NEW
 
 export const AuthContext = createContext(null);
 
@@ -9,7 +9,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // Hydrate from storage on first load
   useEffect(() => {
-    const stored = loadAuth();                 // ✅ use wrapper
+    const stored = loadAuth();                 //  use wrapper
     if (stored?.user && stored?.token) {
       setUser(stored.user);
       setToken(stored.token);
@@ -23,11 +23,11 @@ export const AuthContextProvider = ({ children }) => {
     if (payload?.user && payload?.token) {
       setUser(payload.user);
       setToken(payload.token);
-      saveAuth({ user: payload.user, token: payload.token }); // ✅ use wrapper
+      saveAuth({ user: payload.user, token: payload.token }); //  use wrapper
     } else {
       setUser(null);
       setToken(null);
-      clearAuth();                                            // ✅ use wrapper
+      clearAuth();                                            //  use wrapper
     }
   };
 
