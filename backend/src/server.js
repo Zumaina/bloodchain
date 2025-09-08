@@ -7,7 +7,8 @@ import connectDB from "./config/db.js";
 import infoRoutes from "./routes/infoRoutes.js";
 import bloodBankRoutes from "./routes/bloodBankRoutes.js";
 import hospitalRoutes from "./routes/hospitalRoutes.js";
-import authRoutes from "./routes/authRoutes.js"; //  NEW
+import authRoutes from "./routes/authRoutes.js";
+import bloodRequestRoutes from "./routes/bloodRequestRoutes.js"; // NEW
 
 // Middleware
 import errorHandler from "./middleware/errorHandler.js";
@@ -19,7 +20,7 @@ const app = express();
 // JSON body support
 app.use(express.json());
 
-// CORS (hardcoded as per CP-2 decision)
+// CORS
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -34,7 +35,8 @@ await connectDB();
 app.use("/api/info", infoRoutes);
 app.use("/api/blood-banks", bloodBankRoutes);
 app.use("/api/hospitals", hospitalRoutes);
-app.use("/api/auth", authRoutes); 
+app.use("/api/auth", authRoutes);
+app.use("/api/blood-requests", bloodRequestRoutes); // NEW
 
 // Error handling middleware
 app.use(errorHandler);

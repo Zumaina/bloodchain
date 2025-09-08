@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Container, Typography, Tabs, Tab, Box, Grid, Alert } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import api from "../utils/api";
 import BloodBankCard from "../components/BloodBankCard";
 import HospitalCard from "../components/HospitalCard";
+import BloodRequestCard from "../components/BloodRequestCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 const DonatePage = () => {
-  const [tab, setTab] = useState(0);
-
+  const location = useLocation();
+  // Set active tab based on location state or default to 0
+  const [tab, setTab] = useState(location.state?.activeTab || 0);
+  
   // Blood Banks
   const [bloodBanks, setBloodBanks] = useState([]);
   const [loadingBanks, setLoadingBanks] = useState(true);
@@ -17,6 +21,11 @@ const DonatePage = () => {
   const [hospitals, setHospitals] = useState([]);
   const [loadingHosp, setLoadingHosp] = useState(true);
   const [errorHosp, setErrorHosp] = useState(null);
+
+  // Blood Requests
+  const [bloodRequests, setBloodRequests] = useState([]);
+  const [loadingRequests, setLoadingRequests] = useState(true);
+  const [errorRequests, setErrorRequests] = useState(null);
 
   // Fetch Blood Banks
   useEffect(() => {
@@ -48,13 +57,35 @@ const DonatePage = () => {
     fetchHospitals();
   }, []);
 
+  // Fetch Blood Requests
+  const fetchBloodRequests = useCallback(async () => {
+    try {
+      setLoadingRequests(true);
+      const res = await api.get("/blood-requests");
+      setBloodRequests(res.data);
+      setErrorRequests(null);
+    } catch (err) {
+      setErrorRequests("Failed to load blood requests");
+    } finally {
+      setLoadingRequests(false);
+    }
+  }, []);
+
+  // Initial fetch of blood requests
+  useEffect(() => {
+    fetchBloodRequests();
+  }, [fetchBloodRequests]);
+
+  const handleRequestUpdate = () => {
+    fetchBloodRequests();
+  };
+
   return (
     <Container sx={{ mt: 4 }}>
       <Typography variant="h4" fontWeight="bold" gutterBottom align="center">
         Donate
       </Typography>
 
-      {/* Tabs */}
       <Tabs value={tab} onChange={(e, v) => setTab(v)} centered>
         <Tab label="Blood Banks" />
         <Tab label="Hospitals" />
@@ -109,10 +140,27 @@ const DonatePage = () => {
 
       {/* Blood Requests Tab */}
       {tab === 2 && (
-        <Box sx={{ mt: 3, textAlign: "center" }}>
-          <Typography variant="body1" color="text.secondary">
-            Blood Requests feature coming soon...
-          </Typography>
+        <Box sx={{ mt: 3 }}>
+          {loadingRequests ? (
+            <LoadingSpinner label="Fetching blood requests..." />
+          ) : errorRequests ? (
+            <Alert severity="error">{errorRequests}</Alert>
+          ) : bloodRequests.length === 0 ? (
+            <Typography variant="body1" color="text.secondary" align="center" sx={{ mt: 4 }}>
+              No active blood requests at the moment.
+            </Typography>
+          ) : (
+            <Grid container justifyContent="center">
+              {bloodRequests.map((request) => (
+                <Grid item xs={12} sm={6} md={4} key={request._id}>
+                  <BloodRequestCard 
+                    request={request} 
+                    onUpdate={handleRequestUpdate} 
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          )}
         </Box>
       )}
     </Container>
