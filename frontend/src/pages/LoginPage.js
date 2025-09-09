@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react"; // useRef added
-
+import React, { useState, useRef } from "react";
 import {
   Container,
   Typography,
@@ -12,7 +11,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom"; // ADDED Link import
 import useLogin from "../hooks/useLogin";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -27,9 +26,13 @@ const LoginPage = () => {
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const navigate = useNavigate();
+  const location = useLocation();
   const { login, loading, error } = useLogin();
 
-  const passwordInputRef = useRef(null); //  NEW: ref to the input element
+  const passwordInputRef = useRef(null);
+
+  // Get the redirect path from location state or default to home
+  const from = location.state?.from?.pathname || "/";
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -46,7 +49,9 @@ const LoginPage = () => {
       setSnackbarMessage(" Login successful!");
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
-      setTimeout(() => navigate("/"), 900);
+      
+      // Redirect to the intended page (or home if none specified)
+      setTimeout(() => navigate(from, { replace: true }), 900);
     } else {
       setSnackbarMessage(error || "Login failed");
       setSnackbarSeverity("error");
@@ -54,7 +59,6 @@ const LoginPage = () => {
     }
   };
 
-  // Keep caret position when toggling visibility
   const handleClickShowPassword = () => {
     const input = passwordInputRef.current;
     let start = null;
@@ -64,7 +68,6 @@ const LoginPage = () => {
       end = input.selectionEnd;
     }
     setShowPassword((prev) => !prev);
-    // Restore focus + selection on next tick after DOM updates
     setTimeout(() => {
       if (!passwordInputRef.current) return;
       passwordInputRef.current.focus();
@@ -73,7 +76,7 @@ const LoginPage = () => {
           passwordInputRef.current.setSelectionRange(start, end);
         }
       } catch {
-        /* some browsers may block setSelectionRange on password; safe to ignore */
+        /* ignore */
       }
     }, 0);
   };
@@ -106,7 +109,7 @@ const LoginPage = () => {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              inputRef={passwordInputRef} //  NEW: hook up the ref
+              inputRef={passwordInputRef}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
