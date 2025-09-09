@@ -57,7 +57,6 @@ const DonorRegisterPage = () => {
           >
             <MenuItem value="Male">Male</MenuItem>
             <MenuItem value="Female">Female</MenuItem>
-            <MenuItem value="Other">Other</MenuItem>
           </TextField>
           <TextField
             label="Blood Group"
