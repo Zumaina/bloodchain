@@ -137,7 +137,7 @@ const ProfilePage = () => {
                 borderRadius: 2,
                 textTransform: "none",
                 fontWeight: 700,
-                boxShadow: "0 8px 18px rgba(183,28,28,0.25)",
+                boxShadow: "0 8px 18px rgba(115, 11, 11, 0.81)",
               }}
             >
               Logout

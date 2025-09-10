@@ -22,9 +22,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
   const { user } = useAuthContext();
   const isRequester = user && request.user._id === user._id;
 
-  console.log("Request data:", request); // DEBUG: Check what data we're getting
-  console.log("User phone:", request.user?.phone); // DEBUG: Check if phone exists
-
   const handleMarkFulfilled = async () => {
     try {
       await api.put(`/blood-requests/${request._id}/fulfilled`);
@@ -129,48 +126,51 @@ const BloodRequestCard = ({ request, onUpdate }) => {
               {/* Call Button - Show even if no phone, but disable if no phone */}
               <Button
                 variant="contained"
-                color="primary"
                 size="small"
                 startIcon={<PhoneIcon />}
                 onClick={() => handleCall(request.user.phone)}
                 disabled={!request.user.phone}
                 sx={{
                   borderRadius: 2,
-                  backgroundColor: request.user.phone ? '#0ba21cff' : 'grey.300',
-                  color: request.user.phone ? 'white' : 'grey.600',
-                  '&:hover': request.user.phone ? { backgroundColor: '#0ba21cff' } : { backgroundColor: 'grey.300' },
+                  backgroundColor: request.user.phone ? 'green' : 'grey.300',
+                  color: 'white',
+                  '&:hover': request.user.phone ? { backgroundColor: 'darkgreen' } : { backgroundColor: 'grey.300' },
                   minWidth: '80px'
                 }}
               >
                 Call
               </Button>
               
-              {/* Mark as Fulfilled Button - Only for requester */}
+              {/* Fulfilled Button - Only for requester */}
               {isRequester ? (
                 <Button
                   variant="contained"
-                  color="success"
                   size="small"
                   onClick={handleMarkFulfilled}
-                  sx={{ borderRadius: 2, minWidth: '140px' }}
+                  sx={{
+                    borderRadius: 2,
+                    minWidth: '100px',
+                    backgroundColor: '#1976d2',
+                    color: 'white',
+                    '&:hover': { backgroundColor: '#1565c0' }
+                  }}
                 >
-                  Mark as Fulfilled
+                  Fulfilled
                 </Button>
               ) : (
                 <Button
                   variant="contained"
-                  color="default"
                   size="small"
                   disabled
                   sx={{
                     backgroundColor: "grey.300",
                     color: "grey.600",
                     borderRadius: 2,
-                    minWidth: '140px',
+                    minWidth: '100px',
                     "&:hover": { backgroundColor: "grey.300" },
                   }}
                 >
-                  Mark as Fulfilled
+                  Fulfilled
                 </Button>
               )}
             </Stack>

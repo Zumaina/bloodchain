@@ -76,7 +76,7 @@ const HomePage = () => {
         <Grid container spacing={3} justifyContent="center">
           {infoCards.map((card) => (
             <Grid item xs={12} sm={6} md={4} sx={{ display: "flex", justifyContent: "stretch" }} key={card.slug}>
-              <Card sx={{ flex: 1, display: "flex", flexDirection: "column", padding: 2, backgroundColor: "#EDE0D4" }}>
+              <Card sx={{ flex: 1, display: "flex", flexDirection: "column", padding: 2, backgroundColor: "#ffeaeaff" }}>
                 <CardContent sx={{ flexGrow: 1 }}>
                   <Typography variant="h6" fontWeight="bold" sx={{ whiteSpace: "pre-line", wordBreak: "break-word" }}>
                     {card.title}

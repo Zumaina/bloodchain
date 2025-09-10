@@ -65,7 +65,7 @@ const RequestPage = () => {
       const { data } = await api.post("/blood-requests", formData);
       setSnackbar({
         open: true,
-        message: "Blood request submitted successfully! Redirecting to requests...",
+        message: "Blood request submitted successfully!",
         severity: "success",
       });
       
@@ -98,12 +98,29 @@ const RequestPage = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4, mb: 8 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h4" fontWeight={800} align="center" gutterBottom>
+      <Paper 
+        elevation={3} 
+        sx={{ 
+          p: 4, 
+          backgroundColor: '#fff5f5',
+          border: '2px solid #ff6b6b',
+          borderRadius: 2
+        }}
+      >
+        <Typography 
+          variant="h4" 
+          fontWeight={800} 
+          align="center" 
+          gutterBottom
+          sx={{ 
+            color: '#d32f2f',
+            mb: 4
+          }}
+        >
           Request Blood
         </Typography>
 
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
           <TextField
             fullWidth
             label="Patient's Name"
@@ -113,6 +130,7 @@ const RequestPage = () => {
             required
             margin="normal"
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           />
 
           <TextField
@@ -126,6 +144,7 @@ const RequestPage = () => {
             margin="normal"
             inputProps={{ min: 1, max: 120 }}
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           />
 
           <TextField
@@ -138,6 +157,7 @@ const RequestPage = () => {
             required
             margin="normal"
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           >
             <MenuItem value="Male">Male</MenuItem>
             <MenuItem value="Female">Female</MenuItem>
@@ -153,6 +173,7 @@ const RequestPage = () => {
             required
             margin="normal"
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           >
             {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((group) => (
               <MenuItem key={group} value={group}>
@@ -172,6 +193,7 @@ const RequestPage = () => {
             margin="normal"
             inputProps={{ min: 1 }}
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           />
 
           <TextField
@@ -185,6 +207,7 @@ const RequestPage = () => {
             margin="normal"
             InputLabelProps={{ shrink: true }}
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           />
 
           <TextField
@@ -198,6 +221,7 @@ const RequestPage = () => {
             margin="normal"
             InputLabelProps={{ shrink: true }}
             disabled={!isAuthenticated}
+            sx={{ mb: 2 }}
           />
 
           <TextField
@@ -209,16 +233,25 @@ const RequestPage = () => {
             required
             margin="normal"
             disabled={!isAuthenticated}
+            sx={{ mb: 3 }}
           />
 
           <Button
             type="submit"
             fullWidth
             variant="contained"
-            color="error"
             size="large"
             disabled={loading || !isAuthenticated}
-            sx={{ mt: 3, py: 1.5 }}
+            sx={{ 
+              mt: 2, 
+              py: 1.5,
+              backgroundColor: '#d32f2f',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              '&:hover': {
+                backgroundColor: '#b71c1c',
+              }
+            }}
           >
             {loading ? "Submitting..." : "Submit Request"}
           </Button>
@@ -227,7 +260,9 @@ const RequestPage = () => {
 
       {/* Login Required Dialog */}
       <Dialog open={loginDialogOpen} onClose={handleCloseDialog}>
-        <DialogTitle>Login Required</DialogTitle>
+        <DialogTitle sx={{ color: '#d32f2f', fontWeight: 'bold' }}>
+          Login Required
+        </DialogTitle>
         <DialogContent>
           <Typography>
             You need to login first to create a blood request.
@@ -235,7 +270,7 @@ const RequestPage = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseDialog}>Cancel</Button>
-          <Button onClick={handleLoginRedirect} variant="contained" color="error">
+          <Button onClick={handleLoginRedirect} variant="contained" sx={{ backgroundColor: '#d32f2f', '&:hover': { backgroundColor: '#b71c1c' } }}>
             Login
           </Button>
         </DialogActions>
