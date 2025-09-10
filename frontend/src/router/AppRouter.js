@@ -8,7 +8,7 @@ import DonatePage from "../pages/DonatePage";
 import InfoPage from "../pages/Info/InfoPage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
-import RequestPage from "../pages/RequestPage"; // NEW
+import RequestPage from "../pages/RequestPage"; 
 import DonorsPage from "../pages/DonorsPage";
 
 const AppRouter = () => {
@@ -22,10 +22,9 @@ const AppRouter = () => {
       <Route path="/donors" element={<DonorsPage />} />
       <Route path="/info/:slug" element={<InfoPage />} />
 
-      {/* Protected routes */}
       <Route element={<ProtectedRoute />}>
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/request" element={<RequestPage />} /> {/* NEW */}
+        <Route path="/request" element={<RequestPage />} /> 
       </Route>
     </Routes>
   );

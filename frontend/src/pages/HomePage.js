@@ -55,7 +55,6 @@ const HomePage = () => {
     e.preventDefault();
     setLoginSnackbar({ open: true, message: "You need to login first" });
     
-    // Redirect after snackbar is shown
     setTimeout(() => {
       navigate("/login", { state: { from: { pathname: "/request" } } });
     }, 1500);

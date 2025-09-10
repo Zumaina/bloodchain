@@ -8,13 +8,13 @@ import {
   Paper,
   Snackbar,
   Alert,
-  InputAdornment,   // NEW
-  IconButton,       // NEW
+  InputAdornment,   
+  IconButton,       
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
 import useRegister from "../hooks/useRegister";
-import Visibility from "@mui/icons-material/Visibility";         // NEW
-import VisibilityOff from "@mui/icons-material/VisibilityOff";   // NEW
+import Visibility from "@mui/icons-material/Visibility";         
+import VisibilityOff from "@mui/icons-material/VisibilityOff";   
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -23,11 +23,9 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  //  NEW: visibility toggles
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  //  NEW: refs to keep caret position when toggling
   const passwordInputRef = useRef(null);
   const confirmInputRef = useRef(null);
 
@@ -76,7 +74,6 @@ const RegisterPage = () => {
     }
   };
 
-  //  NEW: helper to toggle visibility while preserving caret
   const toggleWithCaret = (ref, setter) => {
     const input = ref.current;
     let start = null;
@@ -94,7 +91,6 @@ const RegisterPage = () => {
           ref.current.setSelectionRange(start, end);
         }
       } catch {
-        /* some browsers may restrict setSelectionRange on password; safe to ignore */
       }
     }, 0);
   };
@@ -142,13 +138,13 @@ const RegisterPage = () => {
           <TextField
             fullWidth
             label="Password"
-            type={showPassword ? "text" : "password"}   //  NEW
+            type={showPassword ? "text" : "password"}   
             margin="normal"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            inputRef={passwordInputRef}                 //  NEW
-            InputProps={{                               //  NEW
+            inputRef={passwordInputRef}                 
+            InputProps={{                               
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
@@ -166,13 +162,13 @@ const RegisterPage = () => {
           <TextField
             fullWidth
             label="Confirm Password"
-            type={showConfirm ? "text" : "password"}     //  NEW
+            type={showConfirm ? "text" : "password"}     
             margin="normal"
             required
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            inputRef={confirmInputRef}                   //  NEW
-            InputProps={{                                //  NEW
+            inputRef={confirmInputRef}                   
+            InputProps={{                                
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton

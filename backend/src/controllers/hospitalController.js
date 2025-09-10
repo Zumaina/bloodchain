@@ -1,17 +1,15 @@
 import Hospital from "../models/Hospital.js";
 import { validationResult } from "express-validator";
 
-// GET all hospitals
 export const getHospitals = async (req, res, next) => {
   try {
-    const hospitals = await Hospital.find().sort({ name: 1 }); // alphabetical
+    const hospitals = await Hospital.find().sort({ name: 1 }); 
     res.status(200).json(hospitals);
   } catch (error) {
     next(error);
   }
 };
 
-// POST add hospital
 export const addHospital = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

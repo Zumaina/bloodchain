@@ -1,12 +1,10 @@
-const STORAGE_KEY = "bc_auth"; // { user, token }
+const STORAGE_KEY = "bc_auth";
 
-/** Save { user, token } to localStorage */
 export const saveAuth = ({ user, token }) => {
   if (!user || !token) return;
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ user, token }));
 };
 
-/** Load { user, token } from localStorage (or null) */
 export const loadAuth = () => {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -20,7 +18,6 @@ export const loadAuth = () => {
   }
 };
 
-/** Clear auth from localStorage */
 export const clearAuth = () => {
   localStorage.removeItem(STORAGE_KEY);
 };

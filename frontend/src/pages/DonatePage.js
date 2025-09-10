@@ -9,25 +9,20 @@ import LoadingSpinner from "../components/LoadingSpinner";
 
 const DonatePage = () => {
   const location = useLocation();
-  // Set active tab based on location state or default to 0
   const [tab, setTab] = useState(location.state?.activeTab || 0);
   
-  // Blood Banks
   const [bloodBanks, setBloodBanks] = useState([]);
   const [loadingBanks, setLoadingBanks] = useState(true);
   const [errorBanks, setErrorBanks] = useState(null);
 
-  // Hospitals
   const [hospitals, setHospitals] = useState([]);
   const [loadingHosp, setLoadingHosp] = useState(true);
   const [errorHosp, setErrorHosp] = useState(null);
 
-  // Blood Requests
   const [bloodRequests, setBloodRequests] = useState([]);
   const [loadingRequests, setLoadingRequests] = useState(true);
   const [errorRequests, setErrorRequests] = useState(null);
 
-  // Fetch Blood Banks
   useEffect(() => {
     const fetchBloodBanks = async () => {
       try {
@@ -42,7 +37,6 @@ const DonatePage = () => {
     fetchBloodBanks();
   }, []);
 
-  // Fetch Hospitals
   useEffect(() => {
     const fetchHospitals = async () => {
       try {
@@ -57,7 +51,6 @@ const DonatePage = () => {
     fetchHospitals();
   }, []);
 
-  // Fetch Blood Requests
   const fetchBloodRequests = useCallback(async () => {
     try {
       setLoadingRequests(true);
@@ -71,7 +64,6 @@ const DonatePage = () => {
     }
   }, []);
 
-  // Initial fetch of blood requests
   useEffect(() => {
     fetchBloodRequests();
   }, [fetchBloodRequests]);
@@ -92,7 +84,6 @@ const DonatePage = () => {
         <Tab label="Blood Requests" />
       </Tabs>
 
-      {/* Blood Banks Tab */}
       {tab === 0 && (
         <Box sx={{ mt: 3 }}>
           {loadingBanks ? (
@@ -115,7 +106,6 @@ const DonatePage = () => {
         </Box>
       )}
 
-      {/* Hospitals Tab */}
       {tab === 1 && (
         <Box sx={{ mt: 3 }}>
           {loadingHosp ? (
@@ -138,7 +128,6 @@ const DonatePage = () => {
         </Box>
       )}
 
-      {/* Blood Requests Tab */}
       {tab === 2 && (
         <Box sx={{ mt: 3 }}>
           {loadingRequests ? (

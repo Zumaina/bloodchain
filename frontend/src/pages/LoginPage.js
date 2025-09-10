@@ -11,7 +11,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import { useNavigate, useLocation, Link } from "react-router-dom"; // ADDED Link import
+import { useNavigate, useLocation, Link } from "react-router-dom"; 
 import useLogin from "../hooks/useLogin";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -31,7 +31,6 @@ const LoginPage = () => {
 
   const passwordInputRef = useRef(null);
 
-  // Get the redirect path from location state or default to home
   const from = location.state?.from?.pathname || "/";
 
   const handleLogin = async (e) => {
@@ -50,7 +49,6 @@ const LoginPage = () => {
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
       
-      // Redirect to the intended page (or home if none specified)
       setTimeout(() => navigate(from, { replace: true }), 900);
     } else {
       setSnackbarMessage(error || "Login failed");
@@ -76,7 +74,6 @@ const LoginPage = () => {
           passwordInputRef.current.setSelectionRange(start, end);
         }
       } catch {
-        /* ignore */
       }
     }, 0);
   };

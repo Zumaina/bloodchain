@@ -24,7 +24,6 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: String,
       trim: true,
-      // Optional but validated if present
       validate: {
         validator: (v) => !v || validator.isMobilePhone(String(v), "any"),
         message: "Please provide a valid phone number",
@@ -34,16 +33,14 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: [8, "Password must be at least 8 characters"],
-      select: false, // never return password by default
+      select: false, 
     },
   },
   { timestamps: true }
 );
 
-// Index for faster email lookups and to enforce uniqueness at DB level
 userSchema.index({ email: 1 }, { unique: true });
 
-// Hash password if it was modified/created
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const saltRounds = 10;
@@ -51,12 +48,10 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Helper to compare candidate password with stored hash
 userSchema.methods.comparePassword = async function (candidatePassword) {
   return bcrypt.compare(candidatePassword, this.password);
 };
 
-// Hide internal fields when converting to JSON
 userSchema.methods.toJSON = function () {
   const obj = this.toObject({ versionKey: false });
   delete obj.password;

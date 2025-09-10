@@ -25,7 +25,7 @@ const BloodRequestCard = ({ request, onUpdate }) => {
   const handleMarkFulfilled = async () => {
     try {
       await api.put(`/blood-requests/${request._id}/fulfilled`);
-      onUpdate(); // Refresh the list
+      onUpdate(); 
     } catch (error) {
       console.error("Error marking request as fulfilled:", error);
     }
@@ -45,7 +45,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
       }}
     >
       <CardContent>
-        {/* Header with Name and Status */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "start", mb: 2 }}>
           <Typography variant="h6" fontWeight="bold" sx={{ flex: 1 }}>
             {request.name}
@@ -58,7 +57,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
           />
         </Box>
 
-        {/* Requester Information */}
         <Box sx={{ mb: 2, p: 1.5, backgroundColor: 'rgba(183, 28, 28, 0.05)', borderRadius: 2 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
             <PersonIcon sx={{ color: "red", mr: 1, fontSize: 20 }} />
@@ -67,7 +65,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
             </Typography>
           </Box>
           
-          {/* Always show phone number section */}
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <PhoneIcon sx={{ color: "green", mr: 1, fontSize: 20 }} />
@@ -78,7 +75,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
           </Box>
         </Box>
 
-        {/* Patient Details */}
         <Box sx={{ mb: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <BloodtypeIcon sx={{ color: "red", mr: 1, fontSize: 20 }} />
@@ -105,7 +101,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
 
         <Divider sx={{ my: 2 }} />
 
-        {/* Fulfillment Section */}
         {request.isFulfilled ? (
           <Box sx={{ textAlign: "center", py: 1 }}>
             <Chip
@@ -123,7 +118,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
         ) : (
           <Box sx={{ textAlign: "center" }}>
             <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
-              {/* Call Button - Show even if no phone, but disable if no phone */}
               <Button
                 variant="contained"
                 size="small"
@@ -141,7 +135,6 @@ const BloodRequestCard = ({ request, onUpdate }) => {
                 Call
               </Button>
               
-              {/* Fulfilled Button - Only for requester */}
               {isRequester ? (
                 <Button
                   variant="contained"

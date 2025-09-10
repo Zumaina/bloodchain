@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 
-/**
- * Protect routes using Authorization: Bearer <token>
- */
+
 const authMiddleware = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization || "";
@@ -17,7 +15,6 @@ const authMiddleware = (req, res, next) => {
     const token = parts[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Attach minimal user info to request for downstream handlers
     req.user = { id: decoded.id };
     return next();
   } catch (err) {

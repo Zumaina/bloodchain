@@ -12,11 +12,10 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Link, useNavigate } from "react-router-dom"; // ADDED useNavigate
+import { Link, useNavigate } from "react-router-dom"; 
 import logo1 from "../assets/logo1.png";
 import useAuthContext from "../hooks/useAuthContext";
 
-// Create a custom button with highly visible click feedback for navbar
 const NavbarButton = ({
   children,
   to,
@@ -61,7 +60,7 @@ const Navbar = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const { isAuthenticated, user } = useAuthContext();
   const [loginSnackbar, setLoginSnackbar] = useState({ open: false, message: "" });
-  const navigate = useNavigate(); // ADDED navigate hook
+  const navigate = useNavigate(); 
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -80,20 +79,17 @@ const Navbar = () => {
     }, 300);
   };
 
-  // Handle Request button click for unauthenticated users
  const handleRequestClick = (e) => {
   if (!isAuthenticated) {
     e.preventDefault();
     setLoginSnackbar({ open: true, message: "You need to login first" });
     
-    // Redirect after snackbar is shown
     setTimeout(() => {
       navigate("/login", { state: { from: { pathname: "/request" } } });
     }, 1500);
   }
 };
 
-  // Build mobile menu items based on auth state
   const mobilePaths = isAuthenticated
     ? ["/", "/donate", "/request", "/donors", "/profile"]
     : ["/", "/donate", "/request", "/donors", "/login", "/register"];
@@ -120,22 +116,19 @@ const Navbar = () => {
           Blood Chain
         </Typography>
 
-        {/* Desktop Menu */}
         <Box sx={{ display: { xs: "none", md: "flex" }, alignItems: "center" }}>
           <NavbarButton to="/">Home</NavbarButton>
           <NavbarButton to="/donate">Donate</NavbarButton>
           
-          {/* Request Button with redirect logic */}
           <NavbarButton 
             to="/request"
-            onClick={handleRequestClick} // ADDED onClick handler
+            onClick={handleRequestClick} 
           >
             Request
           </NavbarButton>
           
           <NavbarButton to="/donors">Donors</NavbarButton>
 
-          {/* Auth-aware section */}
           {!isAuthenticated ? (
             <>
               <NavbarButton to="/login">Login</NavbarButton>
@@ -152,7 +145,6 @@ const Navbar = () => {
           )}
         </Box>
 
-        {/* Mobile Menu */}
         <Box sx={{ display: { xs: "block", md: "none" } }}>
           <IconButton
             size="large"

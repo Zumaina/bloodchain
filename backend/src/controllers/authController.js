@@ -3,11 +3,7 @@ import User from "../models/User.js";
 import asyncHandler from "../utils/asyncHandler.js";
 import generateToken from "../utils/generateToken.js";
 
-/**
- * @desc    Register a new user
- * @route   POST /api/auth/register
- * @access  Public
- */
+
 export const registerUser = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -33,11 +29,7 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 });
 
-/**
- * @desc    Login user
- * @route   POST /api/auth/login
- * @access  Public
- */
+
 export const loginUser = asyncHandler(async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -69,11 +61,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   });
 });
 
-/**
- * @desc    Get current user profile
- * @route   GET /api/auth/me
- * @access  Private
- */
+
 export const getMe = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
   if (!user) {

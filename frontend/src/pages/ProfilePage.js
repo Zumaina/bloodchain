@@ -33,7 +33,7 @@ const InfoRow = ({ icon, label, value }) => (
     sx={{
       p: 1.25,
       borderRadius: 2,
-      bgcolor: "rgba(183, 28, 28, 0.03)", // subtle blood-red tint
+      bgcolor: "rgba(183, 28, 28, 0.03)", 
     }}
   >
     <Box
@@ -65,7 +65,6 @@ const ProfilePage = () => {
 
   return (
     <Container maxWidth="sm" sx={{ mt: 6, mb: 8 }}>
-      {/* Top banner similar to InfoPage header */}
       <Box
         sx={{
           height: 120,

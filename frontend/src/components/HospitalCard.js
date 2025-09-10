@@ -11,11 +11,9 @@ import PlaceIcon from "@mui/icons-material/Place";
 import PhoneIcon from "@mui/icons-material/Phone";
 
 const HospitalCard = ({ name, location, phone }) => {
-  // Format name: Capitalize first letter
   const formattedName =
     name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
-  // Google Maps URL using name
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     name
   )}`;
@@ -32,7 +30,6 @@ const HospitalCard = ({ name, location, phone }) => {
       }}
     >
       <CardContent>
-        {/* Show formatted hospital name */}
         <Typography variant="h6" fontWeight="bold" gutterBottom align="center">
           {formattedName}
         </Typography>

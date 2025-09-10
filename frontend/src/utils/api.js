@@ -7,7 +7,6 @@ const api = axios.create({
   headers: { "Content-Type": "application/json" },
 });
 
-// Attach Authorization header if token exists
 api.interceptors.request.use((config) => {
   const auth = loadAuth();
   if (auth?.token) {
@@ -16,7 +15,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle 401 globally: clear auth and redirect to /login
 api.interceptors.response.use(
   (res) => res,
   (error) => {

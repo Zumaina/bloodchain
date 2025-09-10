@@ -4,10 +4,8 @@ import { getHospitals, addHospital } from "../controllers/hospitalController.js"
 
 const router = express.Router();
 
-// GET all hospitals
 router.get("/", getHospitals);
 
-// POST new hospital with validation
 router.post(
   "/",
   [

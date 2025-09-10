@@ -3,7 +3,7 @@ import Info from "../models/Info.js";
 
 export const getInfos = async (req, res, next) => {
   try {
-    const infos = await Info.find().sort({ title: 1 }); // optional: alphabetical
+    const infos = await Info.find().sort({ title: 1 }); 
     res.status(200).json(infos);
   } catch (error) {
     next(error);

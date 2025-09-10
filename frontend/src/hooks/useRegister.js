@@ -17,7 +17,6 @@ const useRegister = () => {
         phone,
         password,
       });
-      // data => { message, user, token }
       setAuth({ user: data.user, token: data.token });
       return data.user;
     } catch (err) {

@@ -5,7 +5,6 @@ import auth from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// POST /api/auth/register
 router.post(
   "/register",
   [
@@ -33,7 +32,6 @@ router.post(
   registerUser
 );
 
-// POST /api/auth/login
 router.post(
   "/login",
   [
@@ -45,7 +43,6 @@ router.post(
   loginUser
 );
 
-// GET /api/auth/me (protected)
 router.get("/me", auth, getMe);
 
 export default router;

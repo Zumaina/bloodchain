@@ -20,7 +20,7 @@ import api from "../utils/api";
 
 const RequestPage = () => {
   const [formData, setFormData] = useState({
-    name: "", // Patient's name (not the logged-in user's name)
+    name: "", 
     age: "",
     gender: "",
     bloodGroup: "",
@@ -37,10 +37,8 @@ const RequestPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Check if redirected from login
   const fromRequestPage = location.state?.from === "/request";
 
-  // Redirect to login if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
       setLoginDialogOpen(true);
@@ -69,9 +67,8 @@ const RequestPage = () => {
         severity: "success",
       });
       
-      // Redirect to Donate page (Blood Requests tab) after 2 seconds
       setTimeout(() => {
-        navigate("/donate", { state: { activeTab: 2 } }); // Redirect to donate page with tab 2 (Blood Requests)
+        navigate("/donate", { state: { activeTab: 2 } }); 
       }, 2000);
       
     } catch (error) {
@@ -258,7 +255,6 @@ const RequestPage = () => {
         </Box>
       </Paper>
 
-      {/* Login Required Dialog */}
       <Dialog open={loginDialogOpen} onClose={handleCloseDialog}>
         <DialogTitle sx={{ color: '#d32f2f', fontWeight: 'bold' }}>
           Login Required
