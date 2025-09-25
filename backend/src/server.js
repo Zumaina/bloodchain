@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import co2Middleware from "./middleware/co2Middleware.js";
 
 import infoRoutes from "./routes/infoRoutes.js";
 import bloodBankRoutes from "./routes/bloodBankRoutes.js";
@@ -25,6 +26,8 @@ app.use(
 );
 
 await connectDB();
+
+app.use(co2Middleware);
 
 app.use("/api/info", infoRoutes);
 app.use("/api/blood-banks", bloodBankRoutes);
